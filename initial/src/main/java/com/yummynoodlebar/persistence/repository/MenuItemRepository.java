@@ -1,12 +1,14 @@
 package com.yummynoodlebar.persistence.repository;
 
 import com.yummynoodlebar.persistence.domain.MenuItem;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MenuItemRepository {
+import java.util.List;
 
-  MenuItem save(MenuItem order);
 
-  MenuItem findOne(String key);
+@Repository
+public interface MenuItemRepository extends CrudRepository<MenuItem, String>, AnalyseIngredients {
 
-  Iterable<MenuItem> findAll();
+    public List<MenuItem> findByIngredientsNameIn(String... name);
 }
